@@ -1,4 +1,6 @@
 <script>
+  import User from './User.svelte'
+
   let users = [
     {
       id: 1,
@@ -27,15 +29,8 @@
 
 <div>
   <h1 class="text-2xl text-center mt-10">List of Users</h1>
-  {#each getUsers() as { image, name, userEmail, id }, i (id)}
-    <div
-      class="flex m-5 bg-white border p-2 rounded-lg shadow-md hover:shadow-lg"
-    >
-      <p class="w-10">{i + 1}</p>
-      <img class="rounded-full w-14 h-14" src={image} alt={name} />
-      <h3 class="mx-4 w-20">{name}</h3>
-      <p class="mx-4 w-20">{userEmail}</p>
-    </div>
+  {#each getUsers() as { image, name, email, id }, i (id)}
+    <User {image} {name} {email} {i} />
   {:else}
     <p>No user found</p>
   {/each}
