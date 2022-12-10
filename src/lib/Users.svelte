@@ -26,7 +26,7 @@
     },
   ]
 
-  let filterUsers = users
+  $: filterUsers = users
 
   const filter = (e) => {
     if (e.detail === 'null') {
@@ -38,12 +38,16 @@
     }
     filterUsers = users.filter((user) => user.active === true)
   }
+
+  const remove = (e) => {
+    users = users.filter((user) => user.id !== e.detail)
+  }
 </script>
 
 <FilterUser on:filter={filter} />
 <h1 class="text-2xl text-center mt-10">List of Users</h1>
 {#each filterUsers as user, i (user.id)}
-  <User {user} {i} />
+  <User on:remove={remove} {user} {i} />
 {:else}
   <p>No user found</p>
 {/each}
