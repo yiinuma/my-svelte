@@ -8,7 +8,7 @@
   }
 </script>
 
-<div class="ml-4 mt-4">
+<div>
   <label for="user-filter">Filter User</label>
   <select
     on:change={filter}

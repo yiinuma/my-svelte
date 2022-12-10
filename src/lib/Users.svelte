@@ -1,5 +1,6 @@
 <script>
   import FilterUser from './FilterUser.svelte'
+  import NewUser from './NewUser.svelte'
   import User from './User.svelte'
 
   let users = [
@@ -44,10 +45,15 @@
   }
 </script>
 
-<FilterUser on:filter={filter} />
-<h1 class="text-2xl text-center mt-10">List of Users</h1>
-{#each filterUsers as user, i (user.id)}
-  <User on:remove={remove} {user} {i} />
-{:else}
-  <p>No user found</p>
-{/each}
+<div>
+  <h1 class="text-2xl text-center mt-10">List of Users</h1>
+  <div class="flex justify-between mx-4 items-center mt-4">
+    <FilterUser on:filter={filter} />
+    <NewUser />
+  </div>
+  {#each filterUsers as user, i (user.id)}
+    <User on:remove={remove} {user} {i} />
+  {:else}
+    <p>No user found</p>
+  {/each}
+</div>
