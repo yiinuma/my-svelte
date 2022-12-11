@@ -43,13 +43,24 @@
   const remove = (e) => {
     users = users.filter((user) => user.id !== e.detail)
   }
+
+  const add = ({ detail }) => {
+    users = [
+      {
+        ...detail,
+        id: users.length + 1,
+        image: '/src/assets/images/dummy-user.png',
+      },
+      ...users,
+    ]
+  }
 </script>
 
 <div>
   <h1 class="text-2xl text-center mt-10">List of Users</h1>
   <div class="flex justify-between mx-4 items-center mt-4">
     <FilterUser on:filter={filter} />
-    <NewUser />
+    <NewUser on:newUser={add} />
   </div>
   {#each filterUsers as user, i (user.id)}
     <User on:remove={remove} {user} {i} />
