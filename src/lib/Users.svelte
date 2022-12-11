@@ -2,57 +2,19 @@
   import FilterUser from './FilterUser.svelte'
   import NewUser from './NewUser.svelte'
   import User from './User.svelte'
+  import { users, remove, add } from '../store'
 
-  let users = [
-    {
-      id: 1,
-      image: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-      name: 'John',
-      email: 'John@bitfumes.com',
-      active: false,
-    },
-    {
-      id: 2,
-      image: 'https://cdn-icons-png.flaticon.com/512/201/201634.png',
-      name: 'Jenie',
-      email: 'Jenie@bitfumes.com',
-      active: true,
-    },
-    {
-      id: 3,
-      image: 'https://cdn-icons-png.flaticon.com/512/560/560277.png',
-      name: 'Keiji',
-      email: 'Keiji@bitfumes.com',
-      active: false,
-    },
-  ]
-
-  $: filterUsers = users
+  $: filterUsers = $users
 
   const filter = (e) => {
     if (e.detail === 'null') {
-      filterUsers = users
+      filterUsers = $users
       return
     } else if (e.detail === 'false') {
-      filterUsers = users.filter((user) => user.active === false)
+      filterUsers = $users.filter((user) => user.active === false)
       return
     }
-    filterUsers = users.filter((user) => user.active === true)
-  }
-
-  const remove = (e) => {
-    users = users.filter((user) => user.id !== e.detail)
-  }
-
-  const add = ({ detail }) => {
-    users = [
-      {
-        ...detail,
-        id: users.length + 1,
-        image: '/src/assets/images/dummy-user.png',
-      },
-      ...users,
-    ]
+    filterUsers = $users.filter((user) => user.active === true)
   }
 </script>
 
