@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import { createEventDispatcher, onMount } from 'svelte'
   import Modal from './Modal.svelte'
   const dispatch = createEventDispatcher()
