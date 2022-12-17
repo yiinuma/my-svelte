@@ -33,7 +33,7 @@ export const add = ({ detail }) => {
     {
       ...detail,
       id: _users.length + 1,
-      image: '/src/assets/images/dummy-user.png',
+      image: './src/assets/images/dummy-user.png',
     },
     ..._users,
    ])
